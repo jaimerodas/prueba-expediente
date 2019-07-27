@@ -1,5 +1,5 @@
 class AppUtils
   def self.has_correct_format?(id)
-    true
+    !!(/\A\d+\z/ =~ id)
   end
 end
