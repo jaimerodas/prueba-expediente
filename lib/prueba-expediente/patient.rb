@@ -1,17 +1,5 @@
-class Patient
-  def self.find(id)
-    new(id)
-  end
-
-  def initialize(id)
-    @id = id.to_i
-  end
-
-  attr_reader :id
-
-  def exists?
-    true
-  end
+class Patient < ActiveRecord::Base
+  has_many :allergies
 
   def record
     [
@@ -28,11 +16,9 @@ class Patient
   def response_object
     {
       no_expediente: id,
-      fecha_ultima_consulta: "31/12/19",
-      tipo_sangre: "A+",
-      alergias: [
-        {nombre: "algo", fecha_alta: "31/12/19", medicamento: "algo"},
-      ],
+      fecha_ultima_consulta: fecha_ultima_consulta.strftime("%d/%m/%y"),
+      tipo_sangre: tipo_sangre,
+      alergias: allergies.map(&:response_object),
     }
   end
 end

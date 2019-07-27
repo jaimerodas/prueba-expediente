@@ -1,5 +1,6 @@
 require "rubygems"
 require "bundler"
+require "sinatra/activerecord"
 
 require_relative "prueba-expediente"
 
@@ -16,9 +17,7 @@ get "/demo/v1/accounts/:id/record" do |id|
     halt(*AppErrors.incorrect_format)
   end
 
-  patient = Patient.find(id)
-
-  if patient.exists?
+  if (patient = Patient.find_by(id: id))
     patient.record
   else
     halt(*AppErrors.not_found)
