@@ -1,9 +1,7 @@
 require "rubygems"
 require "bundler"
 
-require_relative "app-errors"
-require_relative "app-utils"
-require_relative "patient"
+require_relative "prueba-expediente"
 
 Bundler.require
 

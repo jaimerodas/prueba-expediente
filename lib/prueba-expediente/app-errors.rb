@@ -10,11 +10,11 @@ class AppErrors
   def self.process(code, message)
     [
       code,
-      { "Content-Type" => "application/json" },
+      {"Content-Type" => "application/json"},
       {
         codigo: code,
-        mensaje: message
-      }.to_json
+        mensaje: message,
+      }.to_json,
     ]
   end
 end
